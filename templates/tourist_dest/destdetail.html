@@ -1,0 +1,17 @@
+{% extends 'tourist_dest/index.html' %}
+{% load static %}
+{% block content %}
+
+<h1>{{ destination.placename }}</h1>
+    <p><strong>Weather:</strong> {{ destination.weather }}</p>
+    <p><strong>Location:</strong> {{ destination.state }}, {{ destination.district }}</p>
+    <p><strong>Google Map Link:</strong> <a href="{{ destination.google_map_link }}" target="_blank">Open Google Maps</a></p>
+    <img src="{{ destination.dest_image }}" alt="{{ destination.place_name }}" style="max-width: 300px;">
+    <p><strong>Description:</strong> {{ destination.description }}</p>
+
+<a href="/updatedetail/{{ destination.id }}" class="btn btn-success">Edit</a>
+<a href="/deletedest/{{ destination.id }}" class="btn btn-danger">Delete</a>
+
+
+
+{% endblock %}

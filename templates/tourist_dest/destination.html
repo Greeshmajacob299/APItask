@@ -1,0 +1,44 @@
+{% extends 'tourist_dest/index.html' %}
+{% load static %}
+{% block content %}
+
+    <!-- Destination Start -->
+
+            <div class="row">
+                {% for destination in destinations %}
+                <div class="col-xl-4 col-lg-4 col-md-6">
+
+
+                    <div class="card" style="width: 18rem;">
+                      <img class="card-img-top" src="{{ destination.dest_image }}" alt="Card image cap">
+                      <div class="card-body">
+                        <h5 class="card-title">{{ destination.placename }}</h5>
+                        <a href="{% url 'destdetail' destination.id %}" class="btn btn-primary">Read More</a>
+                      </div>
+                 </div>
+                </div>
+                {% endfor %}
+
+            </div>
+
+   <div class="pagination">
+        <span class="step-links">
+            {% if destinations.has_previous %}
+                <a href="?page=1">&laquo; First</a>
+                <a href="?page={{ destinations.previous_page_number }}">Previous</a>
+            {% endif %}
+
+            <span class="current">
+                Page {{ destinations.number }} of {{ destinations.paginator.num_pages }}
+            </span>
+
+            {% if destinations.has_next %}
+                <a href="?page={{ destinations.next_page_number }}">Next</a>
+                <a href="?page={{ destinations.paginator.num_pages }}">Last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
+    <!-- Destination Start -->
+
+
+{% endblock %}

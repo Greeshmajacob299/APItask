@@ -1,0 +1,31 @@
+{% extends 'tourist_dest/index.html' %}
+{% load static %}
+{% block content %}
+
+<h3>UPDATE DESTINATION</h3>
+
+<form method="post" enctype="multipart/form-data" action="{% url 'update_destination' destination_id=data.id %}">
+    {% csrf_token %}
+    <label for="">Place Name:</label>
+    <input type="text" name="placename" value="{{ data.placename }}"><br>
+    <label for="">Weather:</label>
+    <input type="text" name="weather" value="{{ data.weather }}"><br>
+    <label for="">District:</label>
+    <input type="text" name="district" value="{{ data.district }}"><br>
+    <label for="">State:</label>
+    <input type="text" name="state" value="{{ data.state }}"><br>
+    <label for="">Google Map Link:</label>
+    <input type="text" name="google_map_link" value="{{ data.google_map_link }}"><br>
+    <label for="">Image:</label>
+    <input type="file" name="dest_image"><br>
+    {% if data.dest_image %}
+        <img src="{{ data.dest_image }}" alt="{{ data.placename }}" style="max-width: 300px;"><br>
+    {% endif %}
+    <label for="">Description:</label><br>
+    <textarea name="description">{{ data.description }}</textarea><br>
+    <button class="btn btn-danger" type="submit">Submit</button>
+</form>
+
+
+
+{% endblock %}
